@@ -1,0 +1,10 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>{{character.name}} </mat-card-title>
+    <mat-card-subtitle> ID: {{ character.id }} </mat-card-subtitle>
+  </mat-card-header>
+  <img class="cardImg" mat-card-md-image src="{{character.image}}"/>
+  <mat-card-content>
+    {{character.gender}}, {{character.species}}, born in {{character.origin.name}}, currently {{character.status}} and located in {{character.location.name}}.
+  </mat-card-content>
+</mat-card>

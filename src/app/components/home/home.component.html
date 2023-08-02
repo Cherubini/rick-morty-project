@@ -1,1 +1,13 @@
-<p>home works!</p>
+<mat-paginator #paginator
+  class="demo-paginator"
+  (page)="handlePageEvent($event)"
+  [length]="length"
+  [pageSize]="pageSize"
+  [showFirstLastButtons]="showFirstLastButtons"
+  [hidePageSize]="hidePageSize"
+  aria-label="Select page">
+</mat-paginator>
+
+<div *ngFor="let character of characters" class="cardContainer">
+  <app-character-card *ngIf="character" [character]="character" class="card"></app-character-card>
+</div>
