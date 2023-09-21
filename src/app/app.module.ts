@@ -8,18 +8,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
 
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './components/header/header.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { EpisodesComponent } from './components/episodes/episodes.component';
 import { EpisodeCardComponent } from './components/episode-card/episode-card.component';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
-  { path: '', component: EpisodesComponent},   // Route principale
-  //{ path: 'about', component: HomeComponent },  Esempio di altra route
+  { path: '', component: HomeComponent },   // Route principale
+  { path: 'episodes', component: EpisodesComponent}, // Esempio di altra route
 ];
 
 @NgModule({
@@ -41,6 +42,7 @@ const routes: Routes = [
     MatInputModule,
     MatIconModule,
     FormsModule,
+    MatButtonModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

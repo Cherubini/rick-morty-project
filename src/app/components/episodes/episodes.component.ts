@@ -52,7 +52,6 @@ export class EpisodesComponent {
     console.log(this.dataServ.characterPageInfo);
     this.pageEvent = e;
     console.log('e');
-
     console.log(e);
 
     if(e.previousPageIndex==null || e.pageIndex===e.previousPageIndex+1)
@@ -71,14 +70,14 @@ export class EpisodesComponent {
       }
      else if(e.pageIndex===Math.floor(this.length/this.pageSize))
       {
-        this.dataServ.getEpisodes(this.dataServ.CHARACTERS_URL+'?page='+Math.floor(this.length/this.pageSize+1)).subscribe({
+        this.dataServ.getEpisodes(this.dataServ.EPISODE_URL+'?page='+Math.floor(this.length/this.pageSize+1)).subscribe({
           next: data=> this.episodes=data,
           error: err => console.log(err),
         })
       }
      else if(e.pageIndex===0)
       {
-        this.dataServ.getEpisodes(this.dataServ.CHARACTERS_URL+'?page=1').subscribe({
+        this.dataServ.getEpisodes(this.dataServ.EPISODE_URL+'?page=1').subscribe({
           next: data=> this.episodes=data,
           error: err => console.log(err),
         })

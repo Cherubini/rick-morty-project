@@ -14,12 +14,14 @@ export class EpisodeCardComponent {
   characters: Character[]=[];
 
   constructor(private dataServ:DataService){
+
   }
 
   ngOnInit(): void {
       // Esegui le istruzioni quando 'episode' cambia
       this.dataServ.getEpisodesCharactersData(this.episode.characters).subscribe((results: Character[]) => {
         this.characters=results;
+
       });
     }
 

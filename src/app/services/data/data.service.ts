@@ -32,12 +32,10 @@ export class DataService {
   constructor(private http:HttpClient) { }
 
   searchCharacter(query: string): Observable<any> {
-    console.log('searchCharacter');
     return this.http.get<any>(`${this.CHARACTERS_URL}?name=${query}`);
   }
 
   searchEpisode(query: string): Observable<any> {
-    console.log('searchEpisode');
     return this.http.get<any>(`${this.EPISODE_URL}?name=${query}`);
   }
 
@@ -48,7 +46,6 @@ export class DataService {
     .pipe(
       map((data: any) =>{
           this.characterPageInfo = data.info;
-          console.log('characterPageInfo in dataserv', this.characterPageInfo);
           return data.results as Character[]})
     )
   }
@@ -69,7 +66,6 @@ export class DataService {
     .pipe(
       map((data: any) => {
         this.episodesPageInfo = data.info;
-        console.log(this.episodesPageInfo);
         return data.results})
     )
   }
