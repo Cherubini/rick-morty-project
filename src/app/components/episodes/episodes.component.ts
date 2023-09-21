@@ -1,45 +1,49 @@
 import { Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Character } from 'src/app/models/character';
+import { Episode } from 'src/app/models/episode';
 import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-episodes',
+  templateUrl: './episodes.component.html',
+  styleUrls: ['./episodes.component.scss']
 })
-export class HomeComponent {
+export class EpisodesComponent {
 
-  characters:Character[] = []
-  length = 826;
+  episodes:Episode[] = []
+  length = 51;
   pageSize = 20;
   pageIndex = 1;
   hidePageSize = true;
   showFirstLastButtons = true;
   pageEvent: PageEvent = new PageEvent;
   query: string = '';
-  searchResults: Character[]=[];
+  searchResults: Episode[]=[];
+  error='';
 
   constructor(private dataServ:DataService){
-    dataServ.getCharacters(dataServ.CHARACTERS_URL).subscribe({
-      next: data=> this.characters=data,
+    dataServ.getEpisodes(dataServ.EPISODE_URL).subscribe({
+      next: data=> this.episodes=data,
       error: err => console.log(err),
     })
-    dataServ.getCharacters(dataServ.CHARACTERS_URL)
+    dataServ.getEpisodes(dataServ.EPISODE_URL)
+
   }
 
   onSearch(): void {
-    this.dataServ.searchCharacter(this.query).subscribe({
+    this.dataServ.searchEpisode(this.query).subscribe({
       next: (data) => {
+        this.error='';
         console.log('data', data);
         this.dataServ.characterPageInfo=data.info;
-        this.characters = data.results;
-        console.log(this.characters);
+        this.episodes = data.results;
+        console.log(this.episodes);
         this.length=data.info.count;
       },
       error: (error) => {
-        this.characters=[]
+        this.episodes=[]
         console.error('Error during search:', error);
+        this.error=error.error.error;
       }
     });
   }
@@ -53,32 +57,31 @@ export class HomeComponent {
 
     if(e.previousPageIndex==null || e.pageIndex===e.previousPageIndex+1)
       {
-        this.dataServ.getCharacters(this.dataServ.characterPageInfo.next).subscribe({
-          next: data=> this.characters=data,
+        this.dataServ.getEpisodes(this.dataServ.characterPageInfo.next).subscribe({
+          next: data=> this.episodes=data,
           error: err => console.log(err),
         })
       }
      else if(e.pageIndex===e.previousPageIndex-1)
       {
-        this.dataServ.getCharacters(this.dataServ.characterPageInfo.prev).subscribe({
-          next: data=> this.characters=data,
+        this.dataServ.getEpisodes(this.dataServ.characterPageInfo.prev).subscribe({
+          next: data=> this.episodes=data,
           error: err => console.log(err),
         })
       }
      else if(e.pageIndex===Math.floor(this.length/this.pageSize))
       {
-        this.dataServ.getCharacters(this.dataServ.CHARACTERS_URL+'?page='+Math.floor(this.length/this.pageSize+1)).subscribe({
-          next: data=> this.characters=data,
+        this.dataServ.getEpisodes(this.dataServ.CHARACTERS_URL+'?page='+Math.floor(this.length/this.pageSize+1)).subscribe({
+          next: data=> this.episodes=data,
           error: err => console.log(err),
         })
       }
      else if(e.pageIndex===0)
       {
-        this.dataServ.getCharacters(this.dataServ.CHARACTERS_URL+'?page=1').subscribe({
-          next: data=> this.characters=data,
+        this.dataServ.getEpisodes(this.dataServ.CHARACTERS_URL+'?page=1').subscribe({
+          next: data=> this.episodes=data,
           error: err => console.log(err),
         })
       }
   }
-
 }

@@ -1,0 +1,13 @@
+<mat-card *ngIf="episode" class="card">
+  <mat-card-header>
+    <mat-card-title>{{episode.name}} </mat-card-title>
+    <mat-card-subtitle> ID: {{ episode.id }} </mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img class="cardImg" mat-card-md-image src="{{character.image}}"/> -->
+  <mat-card-content>
+    {{episode.episode}}, created in {{episode.created}}.
+    <div></div>
+    Characters present:
+    <span *ngFor="let character of characters"> {{character.name}},</span>
+  </mat-card-content>
+</mat-card>

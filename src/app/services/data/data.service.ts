@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, forkJoin, map, tap } from 'rxjs';
 import { Character } from 'src/app/models/character';
 import { CharacterPageInfo } from 'src/app/models/characterPageInfo';
+import { Episode } from 'src/app/models/episode';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class DataService {
 
   readonly LOCATIONS_URL = this.BASE_URL + '/location';
 
+  readonly EPISODE_URL = this.BASE_URL + '/episode';
+
+
+
   characterPageInfo: CharacterPageInfo={
     "count": 826,
     "pages": 42,
@@ -26,9 +31,19 @@ export class DataService {
 
   constructor(private http:HttpClient) { }
 
+  searchCharacter(query: string): Observable<any> {
+    console.log('searchCharacter');
+    return this.http.get<any>(`${this.CHARACTERS_URL}?name=${query}`);
+  }
+
+  searchEpisode(query: string): Observable<any> {
+    console.log('searchEpisode');
+    return this.http.get<any>(`${this.EPISODE_URL}?name=${query}`);
+  }
+
 
   getCharacters(url:string): Observable<Character[]>{
-    console.log('chiamati');
+    console.log('getCharacters');
     return this.http.get<Character[]>(url)
     .pipe(
       map((data: any) =>{
@@ -49,14 +64,18 @@ export class DataService {
     )
   }
 
-  getEpisodes(url:string): Observable<Location[]>{
+  getEpisodes(url:string): Observable<Episode[]>{
     return this.http.get<any>(url)
     .pipe(
       map((data: any) => {
         this.episodesPageInfo = data.info;
         console.log(this.episodesPageInfo);
-
         return data.results})
     )
+  }
+
+  getEpisodesCharactersData(charactersUrls:string[]): Observable<Character[]> {
+    const requests = charactersUrls.map(url => this.http.get<Character>(url));
+    return forkJoin(requests); // Effettua le chiamate in parallelo
   }
 }

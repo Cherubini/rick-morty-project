@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -11,13 +11,25 @@ import { CharacterCardComponent } from './components/character-card/character-ca
 import {MatCardModule} from '@angular/material/card';
 import { HeaderComponent } from './components/header/header.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { EpisodesComponent } from './components/episodes/episodes.component';
+import { EpisodeCardComponent } from './components/episode-card/episode-card.component';
+
+const routes: Routes = [
+  { path: '', component: EpisodesComponent},   // Route principale
+  //{ path: 'about', component: HomeComponent },  Esempio di altra route
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CharacterCardComponent,
-    HeaderComponent
+    HeaderComponent,
+    EpisodesComponent,
+    EpisodeCardComponent
   ],
   imports: [
     HttpClientModule,
@@ -25,9 +37,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatInputModule,
+    MatIconModule,
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }

@@ -1,0 +1,25 @@
+.episodesContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card{
+  width: 20%;
+  height: 50vh;
+  }
+
+.cardContainer{
+  width: 20%;
+  margin: 10px;
+  }
+  .demo-paginator {
+    width: 100vw;
+    display: block;
+  }

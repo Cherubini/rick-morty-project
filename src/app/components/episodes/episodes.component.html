@@ -1,7 +1,6 @@
-
-<div class="cardsContainer">
+<div class="episodesContainer">
   <mat-form-field class="example-form-field">
-    <mat-label>search here</mat-label>
+    <mat-label>Clearable input</mat-label>
     <input matInput type="text" [(ngModel)]="query" (input)="onSearch()">
     <button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="query=''">
       <mat-icon>close</mat-icon>
@@ -18,7 +17,8 @@
     aria-label="Select page">
   </mat-paginator>
 
-  <div *ngFor="let character of characters" class="cardContainer">
-    <app-character-card *ngIf="character" [character]="character" class="card"></app-character-card>
+  <div *ngFor="let episode of episodes" class="cardContainer">
+    <app-episode-card *ngIf="episode" [episode]="episode" class="card"></app-episode-card>
   </div>
+  <span>{{error}}</span>
 </div>
