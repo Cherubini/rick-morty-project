@@ -43,7 +43,7 @@ const routes: Routes = [
     MatIconModule,
     FormsModule,
     MatButtonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [],
   bootstrap: [AppComponent],
