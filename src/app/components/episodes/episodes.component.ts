@@ -49,7 +49,6 @@ export class EpisodesComponent {
   }
 
   handlePageEvent(e: PageEvent) {
-    console.log(this.dataServ.characterPageInfo);
     this.pageEvent = e;
     console.log('e');
     console.log(e);

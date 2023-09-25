@@ -5,7 +5,8 @@
   </mat-card-header>
   <!-- <img class="cardImg" mat-card-md-image src="{{character.image}}"/> -->
   <mat-card-content>
-    <div> episode {{episode.episode[1]+episode.episode[2]}} season {{episode.episode[4]+episode.episode[5]}}, created in {{episode.created.substring(0,4)}}/{{episode.created.substring(5,7)}}/{{episode.created.substring(8,10)}}.</div>
+    <div> episode {{episode.episode[1]+episode.episode[2]}} season {{episode.episode[4]+episode.episode[5]}}, </div>
+    <div> created in {{episode.created.substring(0,4)}}/{{episode.created.substring(5,7)}}/{{episode.created.substring(8,10)}}.</div>
     Characters present:
     <div *ngFor="let character of characters"> {{character.name}},</div>
   </mat-card-content>
