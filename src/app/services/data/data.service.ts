@@ -4,6 +4,7 @@ import { Observable, forkJoin, map, tap } from 'rxjs';
 import { Character } from 'src/app/models/character';
 import { CharacterPageInfo } from 'src/app/models/characterPageInfo';
 import { Episode } from 'src/app/models/episode';
+import { EpisodePageInfo } from 'src/app/models/episodePageInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,13 @@ export class DataService {
     "prev": null
   };
   locationPageInfo={};
-  episodesPageInfo={};
+  episodesPageInfo: EpisodePageInfo={
+    count: 51,
+    pages: 3,
+    next: "",
+    prev: null
+  };
+
 
   constructor(private http:HttpClient) { }
 

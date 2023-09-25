@@ -55,14 +55,16 @@ export class EpisodesComponent {
 
     if(e.previousPageIndex==null || e.pageIndex===e.previousPageIndex+1)
       {
-        this.dataServ.getEpisodes(this.dataServ.characterPageInfo.next).subscribe({
+        console.log('pagina up');
+
+        this.dataServ.getEpisodes(this.dataServ.episodesPageInfo.next).subscribe({
           next: data=> this.episodes=data,
           error: err => console.log(err),
         })
       }
      else if(e.pageIndex===e.previousPageIndex-1)
       {
-        this.dataServ.getEpisodes(this.dataServ.characterPageInfo.prev).subscribe({
+        this.dataServ.getEpisodes(this.dataServ.episodesPageInfo.prev).subscribe({
           next: data=> this.episodes=data,
           error: err => console.log(err),
         })

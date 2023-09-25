@@ -1,6 +1,7 @@
 export interface EpisodePageInfo {
-  userId: number
-  id: number
-  title: string
-  completed: boolean
+  count: number
+  pages: number
+  next: string
+  prev: any
 }
+
